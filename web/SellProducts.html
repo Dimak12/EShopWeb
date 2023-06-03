@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Sell Products</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">
+        <link href="https://bootswatch.com/5/flatly/bootstrap.min.css" rel="stylesheet" type="text/css">
+        
+       
+        <style>
+            
+            button{
+                
+                margin: 20px;
+            }
+            label{
+               margin: 10px;
+            }
+            
+            td{
+                margin: 10px;
+            }
+            
+            #body{
+                
+                background-color: #ccccff
+            }
+            
+          
+        </style>
+    </head>
+    <body id="body">
+         <div>
+        
+        <ul class="nav nav-pills nav-fill navbar-dark bg-primary">                          
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html" target="_blank" id="home">Home</a>
+                </li>
+        </ul>
+    </div> </br>  
+    <center>
+        <div class="container">
+            <div><h2><b>Sell Products</b></h2></div></br>
+            <form id="form3">
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th><label id="barcodeLab">Barcode</label></th>
+                            <th><label id="productLab">Product Name</label></th>
+                            <th><label id="descLab">Description</label></th>
+                            <th><label id="qtyLab">Quantity</label></th>
+                            <th><label id="priceLab">Price</label></th>
+                        </tr>
+                        
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input id="bcodetxt" type="text"  name="barcode" pattern="[0-9]{1,128}"/></td>
+                            <td><input id="producttxt" type="text"  name="product" pattern=".+"/></td>
+                            <td><input id="desctxt" type="text"  name="description" pattern=".+"/></td>
+                            <td><input id="qtytxt" type="text"  name="quantity"/></td>
+                            <td><input id="pricetxt" type="text"  name="price"/></td>
+                        </tr>
+                    </tbody>
+        
+                </table>
+            </div></br></br>
+            
+            <div>
+                <table id="table" border="1" class="table">
+                <tr>
+                    <th>Barcode</th>
+                    <th>Product Name</th>
+                    <th>Description</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+                
+            </table></br>
+            </div>
+            
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th><label id="totalLab">Total Due</label></th>
+                            <th><label id="paymentLab">Payment</label></th>
+                            <th><label id="balLab">Balance</label></th>
+                        </tr>
+                        
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input id="totaltxt" type="text"  name="totalDue"/></td>
+                            <td><input id="paytxt" type="text"  name="payment"/></td>
+                            <td><input id="baltxt" type="text"  name="balance"/></td>
+                        </tr>
+                    </tbody>
+        
+                </table>
+  
+            </div></br></form>
+            <div > 
+               <table>
+                <tr>
+                    <th><button id="add" onclick="fillTable()" class="btn btn-warning" >Add</button></th>
+                    <th><button id="confirm" onclick="confirm()" class="btn btn-warning" >Confirm Purchase</button></th>
+                    <th><button id="reset"  type="submit" form="form3" class="btn btn-warning">Reset</button></th>
+                    
+                </tr>
+                
+            </table> 
+             
+             </div>
+           
+        </div>
+       
+    </center>
+    <script>
+        
+        var table,cell1,cell2,cell3,cell4,cell5,cell6, row;
+        function fillTable(){
+            var barcode = document.getElementById("bcodetxt").value,
+                product = document.getElementById("producttxt").value,
+                description = document.getElementById("desctxt").value,
+                quantity = document.getElementById("qtytxt").value,
+                price = document.getElementById("pricetxt").value;
+        
+        if(barcode==="" || product==="" || description==="" ||quantity==="" ||price===""){
+            
+            alert("Empty fields can't be added to the table");
+        }
+        else{
+            table = document.getElementById("table"),
+                    row = table.insertRow(table.length),
+                    cell1 = row.insertCell(0),
+                    cell2 = row.insertCell(1),
+                    cell3 = row.insertCell(2),
+                    cell4 = row.insertCell(3),
+                    cell5 = row.insertCell(4),
+                    cell6 = row.insertCell(5),
+                    
+                    total = quantity*price,
+            
+            cell1.innerHTML = barcode;
+            cell2.innerHTML = product;
+            cell3.innerHTML = description;
+            cell4.innerHTML = quantity;
+            cell5.innerHTML = price;
+            cell6.innerHTML = total.toFixed(2);
+            var totDue = 0;
+             
+            for(var i=1; i<table.rows.length;i++){
+                
+                totDue= totDue + parseFloat(table.rows[i].cells[5].innerHTML);
+                
+            }
+            
+           
+           document.getElementById("totaltxt").value= ""+totDue.toFixed(2);
+           document.getElementById("bcodetxt").value="";
+           document.getElementById("producttxt").value="";
+           document.getElementById("desctxt").value="";
+           document.getElementById("qtytxt").value="";
+           document.getElementById("pricetxt").value="";
+        }
+        
+            
+           
+        }
+            
+        function confirm() {
+            
+            var payment = parseFloat(document.getElementById("paytxt").value),
+                total = document.getElementById("totaltxt").value,
+                pay = document.getElementById("paytxt").value,
+                totalDue = parseFloat(document.getElementById("totaltxt").value).toFixed(2);
+    
+            if(total===""){
+                
+                alert("Please give the total");
+            }
+            else if(pay==="" ||payment<totalDue ){
+                
+                alert("Payment invalid or insufficient amount");
+            }
+            else{
+                var balance = payment - totalDue;
+                document.getElementById("baltxt").value = ""+balance.toFixed(2);
+                submitForm();
+                alert("Purchase successfull");
+            }
+            
+           
+        } 
+        
+        function submitForm() {
+                
+                 for(var i=1; i<table.rows.length;i++){
+                var http = new XMLHttpRequest();
+               
+                var barcode = table.rows[i].cells[0].innerHTML,
+                    quantity  = table.rows[i].cells[3].innerHTML;
+                http.open("POST", "http://localhost:8084/EShopWeb/Selling", true);
+                http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+                var params = "bcodetxt=" + barcode +"&qtytxt=" +quantity;
+               
+                http.send(params);               
+                http.onload = function() {
+                
+    };
+                
+            }
+                
+}
+    </script>
+
+    </body>
+</html>

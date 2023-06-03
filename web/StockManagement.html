@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">
+        <link href="https://bootswatch.com/5/flatly/bootstrap.min.css" rel="stylesheet" type="text/css">
+        
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"  crossorigin="anonymous"></script>
+        
+        <title>Stock Management</title>
+        <style>
+            #bdy{
+                
+                background-color: #ccccff
+            }
+            #form{
+              position: relative;  
+            }
+        
+            
+        </style>
+        
+        
+        
+</head>
+    <body id="bdy">
+        
+    <div>
+        
+        <ul class="nav nav-pills nav-fill navbar-dark bg-primary">                          
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html" target="_blank">Home</a>
+                </li>
+        </ul>
+    </div> </br></br>  
+    <div class="container">
+        <form id="form" method="post"  action="StockHandler" target="_blank">
+            <fieldset>   
+                <center><h2><b>Stock Management</b></h2></center><br>
+
+ 
+                <center>
+                    <div class="form-group">
+                        
+                                                
+                        <label class="col-md-4 control-label">Barcode</label>  
+                        <div class="col-md-4 inputGroupContainer">
+                            
+                            <div class="input-group">
+                                
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input  id="barcode" type="text" name="barcode1" placeholder="barcode" pattern="[0-9]{1,128}" class="form-control" required="" >
+                            </div>
+                        </div>
+                    </div>
+                </center>
+
+
+
+                <center><div class="form-group">
+                    <label class="col-md-4 control-label" >Product Name</label> 
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input id="product" type="text" name="product1" placeholder="product"  pattern=".+" class="form-control" required="" >
+                        </div>
+                    </div>
+                </div></center>
+
+                <center><div class="form-group">
+                    <label class="col-md-4 control-label">Description</label>  
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input  id="description" type="text" name="description1" placeholder="description" pattern=".+"  class="form-control" required="" >
+                        </div>
+                    </div>
+                </div></center>
+
+
+
+<center><div class="form-group">
+  <label class="col-md-4 control-label" >Quantity</label> 
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+  <input id="quantity" type="text" name="quantity1" placeholder="quantity" pattern="[0-9]+" class="form-control" required=""  >
+    </div>
+  </div>
+    </div></center>
+
+
+<center><div class="form-group">
+  <label class="col-md-4 control-label">Price(ZAR)</label>  
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+        <input id="price" type="text" name="price1" placeholder="price"  pattern="\d+(\.\d+)?" class="form-control" required="" >
+    </div>
+  </div>
+    </div></center></br>
+
+
+
+<center><div class="form-group">
+        <div>
+        <span class="glyphicon glyphicon-send"><input id="chooser" type="file" name="file" form="form2" class="btn btn-warning" > </span>
+    </div></br>
+   
+    <div class="col-md-4">
+        <button type="submit" class="btn btn-warning" >Save <span class="glyphicon glyphicon-send"></span></button>
+        <span class="glyphicon glyphicon-send"><input id="upload" type="submit" value="Upload File" form="form2" class="btn btn-warning" > </span>     
+      
+    </div>
+    
+    </div></center>
+                   
+</fieldset>
+</form>
+        <div>
+            <form id="form2" method="POST" action="Upload" enctype="multipart/form-data" hidden="hidden" >
+            
+        </form></div>   
+        </div>
+  
+    </body>
+</html>
